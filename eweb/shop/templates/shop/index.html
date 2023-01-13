@@ -32,8 +32,9 @@
       crossorigin="anonymous"
     ></script> {% endcomment %}
 
-
+    
   </head>
+
   <body>
     <div class="container">
       <div class="row">
@@ -103,7 +104,7 @@
           <div class="card">
             <img src="{{ product.image }}" class="card-img-top" />
             <div class="card-body">
-              <div class="card-title">{{ product.title }}</div>
+              <div id="nm{{product.id}}" class="card-title">{{ product.title }}</div>
 
               <div class="card-text">Rs. {{ product.price }}</div>
 
@@ -150,8 +151,12 @@
       </div>
     </div>
   </body>
+  
   <script type="text/javascript">
-    if (localStorage.getItem("cart") == null) {
+
+  document.addEventListener("DOMContentLoaded", function(event) { 
+  
+     if (localStorage.getItem("cart") == null) {
       var cart = {};
     } else {
       cart = JSON.parse(localStorage.getItem("cart"));
@@ -171,13 +176,34 @@
 
       localStorage.setItem("cart", JSON.stringify(cart));
 
-      document.getElementById("cart").innerHTML= "Cart(" + Object.keys(cart).length + ")";
+      document.getElementById("cart").innerHTML = "Cart(" + Object.keys(cart).length + ")";
     });
 
-   $(function () {
-    $('[data-toggle="popover"]').popover()
-    document.getElementById("cart").setAttribute('data-content','<h3>This is Cart .</h3>')
-})
+   
+    
+    DisplayCart(cart);
+    
+    function DisplayCart(cart){
+      var cartString = ""; 
+      cartString += "<h3>This is Cart .</h3>";
+      var cartIndex = 1 ;
+      for(var x in cart){
+        if(document.getElementById("nm"+x) != null){
+        cartString += cartIndex;
+        cartString +=document.getElementById("nm"+x).innerHTML+" Qty: "+ cart[x] + "<br>";
+        cartIndex +=1;
+        }
 
-  </script>
+      }
+      document.getElementById("cart").setAttribute('data-content',cartString); 
+      $('[data-toggle="popover"]').popover();
+      
+    }
+
+    
+});
+  </script>  
+  
+  
+  
 </html>
