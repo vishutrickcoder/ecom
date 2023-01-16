@@ -106,7 +106,7 @@
             <div class="card-body">
               <div id="nm{{product.id}}" class="card-title">{{ product.title }}</div>
 
-              <div class="card-text">Rs. {{ product.price }}</div>
+              <div class="card-text" id="price{{product.id}}">{{ product.price }}</div>
 
               <a href="{{ product.id }}" class="btn btn-warning">View</a>
               <button href="" id="{{ product.id}}" class="btn atc btn-warning">
@@ -169,10 +169,12 @@
       if (cart[item_id] != undefined) {
         quantity = cart[item_id][0] + 1;
         cart[item_id][0] = quantity;
+        cart[item_id][2] += parseFloat(document.getElementById("price"+item_id).innerHTML); 
       } else {
         quantity = 1;
+        price = parseFloat(document.getElementById("price"+item_id).innerHTML);
         name = document.getElementById("nm"+item_id).innerHTML;
-        cart[item_id] = [quantity, name]
+        cart[item_id] = [quantity, name,price]
       }
 
       console.log(cart);
