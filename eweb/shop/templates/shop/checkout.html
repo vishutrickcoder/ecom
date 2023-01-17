@@ -27,13 +27,37 @@
   </head>
   <body>
     <div class="container">
+
       <div class="row">
         <div class="col-md-12">
-          <ul class="list-group" id="item_list"></ul>
+          <p class="h1  my-4 font-weight-bold ">Review Your Order</p>
+          <hr>
         </div>
       </div>
 
       <div class="row">
+        <div class="col-md-12">
+          <p class="h3 my-4">Items in Your Cart</p>
+          <hr>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-12 p-5">
+          <ul class="list-group" id="item_list"></ul>
+        </div>
+      </div>
+
+
+       <div class="row mb-4">
+        <div class="col-md-12">
+          <p class="h1  my-4 font-weight-bold ">Enter Your Shiping Address Details</p>
+          <hr >
+        </div>
+      </div>
+
+      <div class="row p-4">
         <div class="col-md-12">
           <form method="POST" >
             {% csrf_token %}
